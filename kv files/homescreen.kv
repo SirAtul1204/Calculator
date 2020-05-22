@@ -1,0 +1,294 @@
+#:import utils kivy.utils
+#:import rgba kivy.utils.get_color_from_hex
+<Button>:
+    background_color: 0,0,0,1
+    on_press: self.background_color=rgba('#373753')
+    on_release: self.background_color=0,0,0,1
+    
+<HomeScreen> 
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#e62e00")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        GridLayout:
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#ffffff")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            rows: 1
+            pos_hint: {"top": 0.99, "right": 0.99, "left": 0.99}
+            size_hint: 0.98, 0.05
+            Label:
+                id: history
+                text: ""
+                halign: 'right'
+                valign: 'middle'
+                color: 0,0,0,1
+                text_size: self.size
+        GridLayout:
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#4e474b")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            rows:1
+            pos_hint: {"top": 0.93, "left": 0.99, "right": 0.99}
+            size_hint: 0.98, 0.10
+            Label:
+                id: output
+                text: ""
+                halign: 'right'
+                valign: 'middle'
+                font_size: 40
+                text_size: self.size
+        FloatLayout:
+            #rows: 4
+            #cols: 4
+            pos_hint: {"top": 0.81, "left": 0.99, "right": 0.99}
+            size_hint: 0.98, 0.78
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#3399ff")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Button:
+                text: "+"
+                text_size: self.size
+                pos_hint: {"top": 1, "x": 0}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.opertationbtn("+")
+            Button:
+                #(
+                text: "("
+                text_size: self.size
+                pos_hint: {"top": 1, "x": 0.2}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn('(')
+            Button:
+                #)
+                text: ")"
+                text_size: self.size
+                pos_hint: {"top": 1, "x": 0.4}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn(')')
+            Button:
+                #clr
+                text: "C"
+                text_size: self.size
+                pos_hint: {"top": 1, "x": 0.6}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.clearall()
+            Button:
+                #Del
+                text: "Del"
+                text_size: self.size
+                pos_hint: {"top": 1, "x": 0.8}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.delbtn()
+            Button:
+                #Other
+                text: "Other"
+                text_size: self.size
+                pos_hint: {"top": 0.2, "x": 0}
+                size_hint: 0.4, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: 
+                    app.changescreen("other_screen")
+                    root.manager.transition.direction = "left"
+            Button:
+                #0
+                id: zero
+                text: "0"
+                text_size: self.size
+                pos_hint: {"top": 0.2, "x": 0.4}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("0")
+                
+            Button:
+                #.
+                text: "."
+                text_size: self.size
+                pos_hint: {"top": 0.2, "x": 0.6}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn(".")
+
+            Button:
+                #/
+                text: "/"
+                text_size: self.size
+                pos_hint: {"top": 0.4, "x": 0}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.opertationbtn("/")
+            Button:
+                #7
+                text: "7"
+                text_size: self.size
+                pos_hint: {"top": 0.4, "x": 0.2}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("7")
+            Button:
+                #8
+                text: "8"
+                text_size: self.size
+                pos_hint: {"top": 0.4, "x": 0.4}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("8")
+            Button:
+                #9
+                text: "9"
+                text_size: self.size
+                pos_hint: {"top": 0.4, "x": 0.6}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("9")
+            Button:
+                #=
+                text: "="
+                text_size: self.size
+                pos_hint: {"top": 0.4, "x": 0.8}
+                size_hint: 0.2, 0.4
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.equalbtn()
+            Button:
+                #x
+                text: "x"
+                text_size: self.size
+                pos_hint: {"top": 0.6, "x": 0}
+                size_hint: 0.2, 0.2
+                font_size: 35
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.opertationbtn("*")
+            Button:
+                #4
+                text: "4"
+                text_size: self.size
+                pos_hint: {"top": 0.6, "x": 0.2}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("4")
+            Button:
+                #5
+                text: "5"
+                text_size: self.size
+                pos_hint: {"top": 0.6, "x": 0.4}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("5")
+            Button:
+                #6
+                text: "6"
+                text_size: self.size
+                pos_hint: {"top": 0.6, "x": 0.6}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("6")
+            Button:
+                #squareroot
+                text: "\u221A"
+                text_size: self.size
+                pos_hint: {"top": 0.6, "x": 0.8}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.squarerootbtn()
+            Button:
+                #-
+                text: "-"
+                text_size: self.size
+                pos_hint: {"top": 0.8, "x": 0}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.opertationbtn("-")
+            Button:
+                #1
+                text: "1"
+                text_size: self.size
+                pos_hint: {"top": 0.8, "x": 0.2}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("1")
+            Button:
+                #2
+                text: "2"
+                text_size: self.size
+                pos_hint: {"top": 0.8, "x": 0.4}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("2")
+            Button:
+                #3
+                text: "3"
+                text_size: self.size
+                pos_hint: {"top": 0.8, "x": 0.6}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.numberbtn("3")
+            Button:
+                id:square
+                text: 'x\u00B2'
+                text_size: self.size
+                pos_hint: {"top": 0.8, "x": 0.8}
+                size_hint: 0.2, 0.2
+                font_size: 40
+                halign: 'center'
+                valign: 'middle'
+                on_release: root.squarebtn()

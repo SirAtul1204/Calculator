@@ -1,0 +1,13 @@
+#:include "kv files/homescreen.kv"
+#:include "kv files/otherscreen.kv"
+
+GridLayout:
+    cols: 1
+    ScreenManager:
+        id: screen_manager
+        HomeScreen:
+            name: "home_screen"
+            id: "home_screen"
+        OtherScreen:
+            name: "other_screen"
+            id: "other_screen"
